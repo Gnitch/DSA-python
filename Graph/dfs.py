@@ -1,20 +1,13 @@
-def dfs(start_node,goal_node):
-    visited = set()
-    if node not in visited:
-        print(node)
-        visited.add(node)
-        for neighbour in graph[node]:
-            dfs(visited, graph, neighbour)
+def dfs(graph, vertex, path=[]):
+    path += [vertex]
 
+    for neighbor in graph[vertex]:
+        if neighbor not in path:
+            path = dfs(graph, neighbor, path)
 
+    return path
 
-tree = {
-    "A": ["B", "C", "D"],
-    "B": ["E", "F"],
-    "C": ["F"],
-    "D": [],
-    "E": [],
-    "F": []
-}
-
-dfs('A','E')
+adjacency_matrix = {1: [2, 3], 2: [4, 5],
+                    3: [5], 4: [6], 5: [6],
+                    6: [7], 7: []}
+print(dfs(adjacency_matrix, 1))
